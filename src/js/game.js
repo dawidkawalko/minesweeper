@@ -5,7 +5,7 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 const GRID_WIDTH = 10; // cells horizontally
 const GRID_HEIGHT = 10; // cells vertically
 const CELL_SIZE = 40; // px
-const MINE_COUNT = 2;
+const MINE_COUNT = 10;
 
 let grid;
 let gameOver = false;
