@@ -10,6 +10,8 @@ const UI_HEIGHT = 100;
 
 let grid;
 let ui;
+let timer;
+let score = 0;
 let gameOver = false;
 let gameWon = false;
 
@@ -35,7 +37,7 @@ function draw() {
     if (gameOver) {
         ui.gameOverOverlay();
     } else if (gameWon) {
-        ui.gameWonOverlay();
+        ui.gameWonOverlay(score);
     }
 
     ui.showInstructions(5, height - UI_HEIGHT);
@@ -53,12 +55,23 @@ function mousePressed() {
             if (gameOver || gameWon) {
                 resetGrid();
             } else {
+                if (!grid.placedMines) {
+                    score = 0;
+                    timer = setInterval(function() {
+                        score += 1;
+                    }, 1000);
+                }
+
                 const hitMine = grid.revealCell(mouseX, mouseY);
                 if (hitMine) {
                     grid.revealMines();
                     gameOver = true;
                 } else {
                     gameWon = grid.allRevealed();
+                }
+
+                if (gameOver || gameWon) {
+                    clearInterval(timer);
                 }
             }
 
