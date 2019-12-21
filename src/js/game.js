@@ -20,7 +20,7 @@ function resetGrid() {
 }
 
 function setup() {
-    createCanvas(GRID_WIDTH * CELL_SIZE, GRID_HEIGHT * CELL_SIZE);
+    createCanvas(GRID_WIDTH * CELL_SIZE, GRID_HEIGHT * CELL_SIZE + 100);
     resetGrid();
 }
 
@@ -34,6 +34,7 @@ function printHeader(message) {
      textSize(40);
      fill(255);
      strokeWeight(5);
+     textAlign(CENTER, CENTER);
      text(message, GRID_WIDTH*CELL_SIZE / 2, GRID_HEIGHT*CELL_SIZE / 2);
 }
 
@@ -41,7 +42,18 @@ function printPlayAgain() {
     textSize(20);
     fill(255);
     strokeWeight(3);
+    textAlign(CENTER, CENTER);
     text('(click to play again)', GRID_WIDTH*CELL_SIZE / 2, GRID_HEIGHT*CELL_SIZE / 2 + 30);
+}
+
+function printInstructions() {
+    textSize(18);
+    fill(0);
+    noStroke();
+    textAlign(LEFT, TOP);
+    text('Instructions:', 5, GRID_HEIGHT*CELL_SIZE + 10);
+    text('[LMB] - reveal cell', 5, GRID_HEIGHT*CELL_SIZE + 30);
+    text('[RMB] - place/remove flag', 5, GRID_HEIGHT*CELL_SIZE + 50);
 }
 
 function draw() {
@@ -50,13 +62,13 @@ function draw() {
     grid.draw();
 
     if (gameOver || gameWon) {
-        textAlign(CENTER, CENTER);
         stroke(0);
-
         printOverlay();
         printHeader(gameOver ? 'You lost' : 'You won');
         printPlayAgain();
     } 
+
+    printInstructions();
 }
 
 function mousePressed() {
