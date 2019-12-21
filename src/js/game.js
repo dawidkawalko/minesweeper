@@ -6,7 +6,7 @@ const GRID_WIDTH = 10; // cells horizontally
 const GRID_HEIGHT = 10; // cells vertically
 const CELL_SIZE = 40; // px
 const MINE_COUNT = 10;
-const UI_HEIGHT = 100;
+const UI_HEIGHT = 180;
 
 let grid;
 let ui;
@@ -40,7 +40,9 @@ function draw() {
         ui.gameWonOverlay(score);
     }
 
-    ui.showInstructions(5, height - UI_HEIGHT);
+    ui.showCurrentScore(score);
+    ui.showGameInfo(GRID_WIDTH, GRID_HEIGHT, MINE_COUNT);
+    ui.showInstructions();
 }
 
 function keyPressed() {

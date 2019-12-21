@@ -9,6 +9,10 @@ class Ui {
         this.playAgainString = '(click to play again)';
         this.scoreString = 'Score: ';
 
+        // game info strings
+        this.gridSizeString = 'Grid size: ';
+        this.mineCountString = 'Mine count: ';
+
         // instruction strings
         this.instructionsHeaderString = 'Instructions:';
         this.instructionsLmbString = '[LMB] - reveal cell';
@@ -59,14 +63,31 @@ class Ui {
         text(this.scoreString + score, this.width/2, this.height/2 + 30);
     }
 
-    showInstructions(x, y) {
+    showInstructions() {
         textSize(18);
         fill(0);
         noStroke();
         textAlign(LEFT, TOP);
-        text(this.instructionsHeaderString, x, y + 10);
-        text(this.instructionsLmbString, x, y + 30);
-        text(this.instructionsRmbString, x, y + 50);
-        text(this.instructionsResetString, x, y + 70);
+        text(this.instructionsHeaderString, 5, this.height + 90);
+        text(this.instructionsLmbString, 5, this.height + 110);
+        text(this.instructionsRmbString, 5, this.height + 130);
+        text(this.instructionsResetString, 5, this.height + 150);
+    }
+
+    showCurrentScore(score) {
+        textSize(18);
+        fill(0);
+        noStroke();
+        textAlign(LEFT, TOP);
+        text(this.scoreString + score, 5, this.height + 10);
+    }
+
+    showGameInfo(gridWidth, gridHeight, mineCount) {
+        textSize(18);
+        fill(0);
+        noStroke();
+        textAlign(LEFT, TOP);
+        text(this.gridSizeString + gridWidth + 'x' + gridHeight, 5, this.height + 30);
+        text(this.mineCountString + mineCount, 5, this.height + 50);
     }
 }
