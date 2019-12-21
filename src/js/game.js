@@ -6,8 +6,10 @@ const GRID_WIDTH = 10; // cells horizontally
 const GRID_HEIGHT = 10; // cells vertically
 const CELL_SIZE = 40; // px
 const MINE_COUNT = 10;
+const UI_HEIGHT = 100;
 
 let grid;
+let ui;
 let gameOver = false;
 let gameWon = false;
 
@@ -20,41 +22,9 @@ function resetGrid() {
 }
 
 function setup() {
-    createCanvas(GRID_WIDTH * CELL_SIZE, GRID_HEIGHT * CELL_SIZE + 100);
+    createCanvas(GRID_WIDTH * CELL_SIZE, GRID_HEIGHT * CELL_SIZE + UI_HEIGHT);
     resetGrid();
-}
-
-function printOverlay() {
-    noStroke();
-    fill('rgba(0, 0, 0, 0.8)');
-    rect(0, 0, GRID_WIDTH * CELL_SIZE, GRID_HEIGHT * CELL_SIZE);
-}
-
-function printHeader(message) {
-     textSize(40);
-     fill(255);
-     strokeWeight(5);
-     textAlign(CENTER, CENTER);
-     text(message, GRID_WIDTH*CELL_SIZE / 2, GRID_HEIGHT*CELL_SIZE / 2);
-}
-
-function printPlayAgain() {
-    textSize(20);
-    fill(255);
-    strokeWeight(3);
-    textAlign(CENTER, CENTER);
-    text('(click to play again)', GRID_WIDTH*CELL_SIZE / 2, GRID_HEIGHT*CELL_SIZE / 2 + 30);
-}
-
-function printInstructions() {
-    textSize(18);
-    fill(0);
-    noStroke();
-    textAlign(LEFT, TOP);
-    text('Instructions:', 5, GRID_HEIGHT*CELL_SIZE + 10);
-    text('[LMB] - reveal cell', 5, GRID_HEIGHT*CELL_SIZE + 30);
-    text('[RMB] - place/remove flag', 5, GRID_HEIGHT*CELL_SIZE + 50);
-    text('[R] - reset grid', 5, GRID_HEIGHT*CELL_SIZE + 70);
+    ui = new Ui(width, height - UI_HEIGHT);
 }
 
 function draw() {
@@ -62,14 +32,13 @@ function draw() {
     
     grid.draw();
 
-    if (gameOver || gameWon) {
-        stroke(0);
-        printOverlay();
-        printHeader(gameOver ? 'You lost' : 'You won');
-        printPlayAgain();
-    } 
+    if (gameOver) {
+        ui.gameOverOverlay();
+    } else if (gameWon) {
+        ui.gameWonOverlay();
+    }
 
-    printInstructions();
+    ui.showInstructions(5, height - UI_HEIGHT);
 }
 
 function keyPressed() {
