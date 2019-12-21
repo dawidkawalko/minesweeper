@@ -54,6 +54,7 @@ function printInstructions() {
     text('Instructions:', 5, GRID_HEIGHT*CELL_SIZE + 10);
     text('[LMB] - reveal cell', 5, GRID_HEIGHT*CELL_SIZE + 30);
     text('[RMB] - place/remove flag', 5, GRID_HEIGHT*CELL_SIZE + 50);
+    text('[R] - reset grid', 5, GRID_HEIGHT*CELL_SIZE + 70);
 }
 
 function draw() {
@@ -69,6 +70,12 @@ function draw() {
     } 
 
     printInstructions();
+}
+
+function keyPressed() {
+    if (key === 'r' || key === 'R') {
+        resetGrid();
+    }
 }
 
 function mousePressed() {
