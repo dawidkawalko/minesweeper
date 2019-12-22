@@ -7,6 +7,7 @@ const GRID_HEIGHT = 10; // cells vertically
 const CELL_SIZE = 40; // px
 const MINE_COUNT = 10;
 const UI_HEIGHT = 180;
+const GAME_LANGUAGE = 'PL';
 
 let grid;
 let ui;
@@ -26,7 +27,7 @@ function resetGrid() {
 function setup() {
     createCanvas(GRID_WIDTH * CELL_SIZE, GRID_HEIGHT * CELL_SIZE + UI_HEIGHT);
     resetGrid();
-    ui = new Ui(width, height - UI_HEIGHT);
+    ui = new Ui(width, height - UI_HEIGHT, GAME_LANGUAGE);
 }
 
 function draw() {
