@@ -11,11 +11,15 @@ class Strings {
             GRID_SIZE: 'Grid size: ',
             MINE_COUNT: 'Mine count: ',
 
-             // instruction strings
+            // instruction strings
             INSTRUCTIONS_HEADER: 'Instructions:',
             INSTRUCTIONS_LMB: '[LMB] - reveal cell',
             INSTRUCTIONS_RMB: '[RMB] - place/remove flag',
-            INSTRUCTIONS_RESET: '[R] - reset grid'
+            INSTRUCTIONS_RESET: '[R] - reset grid',
+
+            // settings strings
+            SETTINGS_HEADER: 'Settings:',
+            SETTINGS_SAVE: 'Save changes'
         };
     }
 
@@ -31,11 +35,15 @@ class Strings {
             GRID_SIZE: 'Rozmiar siatki: ',
             MINE_COUNT: 'Ilość min: ',
 
-             // instruction strings
+            // instruction strings
             INSTRUCTIONS_HEADER: 'Instrukcje:',
             INSTRUCTIONS_LMB: '[LPM] - odkryj pole',
             INSTRUCTIONS_RMB: '[PPM] - ustaw/usuń flagę',
-            INSTRUCTIONS_RESET: '[R] - reset gry'
+            INSTRUCTIONS_RESET: '[R] - reset gry',
+
+            // settings strings
+            SETTINGS_HEADER: 'Ustawienia:',
+            SETTINGS_SAVE: 'Zapisz zmiany'
         };
     }
 }
