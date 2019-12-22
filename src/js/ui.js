@@ -1,36 +1,31 @@
 class Ui {
-    constructor(width, height) {
+    constructor(width, height, language) {
         this.width = width;
         this.height = height;
 
-        // overlay strings
-        this.gameOverString = 'You hit a mine :(';
-        this.gameWonString = 'You won, great job';
-        this.playAgainString = '(click to play again)';
-        this.scoreString = 'Score: ';
+        switch (language) {
+            case 'PL':
+                this.strings = Strings.PL;
+                break;
 
-        // game info strings
-        this.gridSizeString = 'Grid size: ';
-        this.mineCountString = 'Mine count: ';
-
-        // instruction strings
-        this.instructionsHeaderString = 'Instructions:';
-        this.instructionsLmbString = '[LMB] - reveal cell';
-        this.instructionsRmbString = '[RMB] - place/remove flag';
-        this.instructionsResetString = '[R] - reset grid';
+            case 'EN':
+            default:
+                this.strings = Strings.EN;
+                break;
+        }
     }
 
     gameOverOverlay() {
         this._showScreenOverlay();
-        this._showMainLine(this.gameOverString);
-        this._showUnderLine(this.playAgainString, 30);
+        this._showMainLine(this.strings['GAME_OVER']);
+        this._showUnderLine(this.strings['PLAY_AGAIN'], 30);
     }
 
     gameWonOverlay(score) {
         this._showScreenOverlay();
-        this._showMainLine(this.gameWonString);
+        this._showMainLine(this.strings['GAME_WON']);
         this._showScore(score);
-        this._showUnderLine(this.playAgainString, 60);
+        this._showUnderLine(this.strings['PLAY_AGAIN'], 60);
     }
 
     _showScreenOverlay() {
@@ -60,7 +55,7 @@ class Ui {
         fill(255);
         strokeWeight(5);
         textAlign(CENTER, CENTER);
-        text(this.scoreString + score, this.width/2, this.height/2 + 30);
+        text(this.strings['SCORE'] + score, this.width/2, this.height/2 + 30);
     }
 
     showInstructions() {
@@ -68,10 +63,10 @@ class Ui {
         fill(0);
         noStroke();
         textAlign(LEFT, TOP);
-        text(this.instructionsHeaderString, 5, this.height + 90);
-        text(this.instructionsLmbString, 5, this.height + 110);
-        text(this.instructionsRmbString, 5, this.height + 130);
-        text(this.instructionsResetString, 5, this.height + 150);
+        text(this.strings['INSTRUCTIONS_HEADER'], 5, this.height + 90);
+        text(this.strings['INSTRUCTIONS_LMB'], 5, this.height + 110);
+        text(this.strings['INSTRUCTIONS_RMB'], 5, this.height + 130);
+        text(this.strings['INSTRUCTIONS_RESET'], 5, this.height + 150);
     }
 
     showCurrentScore(score) {
@@ -79,7 +74,7 @@ class Ui {
         fill(0);
         noStroke();
         textAlign(LEFT, TOP);
-        text(this.scoreString + score, 5, this.height + 10);
+        text(this.strings['SCORE'] + score, 5, this.height + 10);
     }
 
     showGameInfo(gridWidth, gridHeight, mineCount) {
@@ -87,7 +82,7 @@ class Ui {
         fill(0);
         noStroke();
         textAlign(LEFT, TOP);
-        text(this.gridSizeString + gridWidth + 'x' + gridHeight, 5, this.height + 30);
-        text(this.mineCountString + mineCount, 5, this.height + 50);
+        text(this.strings['GRID_SIZE'] + gridWidth + 'x' + gridHeight, 5, this.height + 30);
+        text(this.strings['MINE_COUNT'] + mineCount, 5, this.height + 50);
     }
 }
